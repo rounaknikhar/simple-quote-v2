@@ -37,8 +37,7 @@ const formattedDate = (date) => {
     <AuthenticatedLayout>
         <template #header>
             <div class="flex justify-between">
-                <span class="text-xl font-bold text-black dark:text-white">Invoice #{{ invoice.id
-                    }}</span>
+                <span class="text-xl font-bold">Invoice #{{ invoice.id }}</span>
                 <StatusBadge :statusObject="invoice.status" />
             </div>
         </template>
@@ -46,13 +45,11 @@ const formattedDate = (date) => {
         <div class="pb-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-0">
                 <div class="flex flex-1 justify-between py-4 px-4 md:px-0">
-                    <h1 class="text-2xl font-semibold mb-0 text-primary dark:text-primary-400">
-                        <span class="hidden md:block">
-                            {{ invoice.company_name }}
-                        </span>
+                    <h1 class="text-2xl font-semibold mb-0">
+                        <span class="hidden md:block">{{ invoice.company_name }}</span>
                     </h1>
                     <div>
-                        <a class="btn btn-sm btn-accent rounded shadow-xl text-black dark:text-white"
+                        <a class="btn btn-sm btn-accent rounded shadow-xl text-white"
                             :class="invoice.products.length == 0 ? 'btn-disabled' : ''" :href="route('invoice.generate.pdf', {
                                 invoice: invoice.id,
                             })
@@ -75,7 +72,7 @@ const formattedDate = (date) => {
                             </svg>
                             <span class="hidden md:block">Edit</span>
                         </button>
-                        <button class="btn btn-sm btn-error rounded shadow-xl text-black dark:text-white ml-1"
+                        <button class="btn btn-sm btn-error rounded shadow-xl text-white ml-1"
                             onclick="deleteInvoiceModal.showModal()">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-5">
@@ -88,28 +85,28 @@ const formattedDate = (date) => {
                         <DeleteInvoiceModal :invoice="invoice" />
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-950 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <EditInvoiceModal :invoice="invoice" :statuses="statuses" />
                     <div class="p-4">
                         <!-- Company details -->
                         <div class="flex flex-col mb-1">
-                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3 text-primary">Company
+                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3">Company
                                 details</span>
                             <div class="py-3 flex flex-col">
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     {{ invoice.company_name }}
                                 </span>
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">VAT number : </span>
                                     {{ invoice.company_vat_number }}
                                 </span>
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Address : </span>
                                     {{ invoice.company_address_line_1 }},
                                     {{
                                         invoice.company_address_line_2
                                             ? invoice.company_address_line_2 + ", "
-                                            : ""
+                                    : ""
                                     }}
                                     {{ invoice.company_city }},
                                     {{ invoice.company_county ? invoice.company_county + ", " : "" }}
@@ -120,19 +117,18 @@ const formattedDate = (date) => {
 
                         <!-- Client details -->
                         <div class="flex flex-col mb-1">
-                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3 text-primary">Client
-                                details</span>
+                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3">Client details</span>
                             <div class="py-3 flex flex-col">
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     {{ invoice.client_name }}
                                 </span>
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Address : </span>
                                     {{ invoice.client_address_line_1 }},
                                     {{
                                         invoice.client_address_line_2
                                             ? invoice.client_address_line_2 + ", "
-                                            : ""
+                                    : ""
                                     }}
                                     {{ invoice.client_city }},
                                     {{ invoice.client_county ? invoice.client_county + ", " : "" }}
@@ -143,42 +139,43 @@ const formattedDate = (date) => {
 
                         <!-- Client details -->
                         <div class="flex flex-col mb-1">
-                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3 text-primary">Invoice
+                            <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3">Invoice
                                 details</span>
                             <div class="py-3 flex flex-col">
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Invoice date : </span>
                                     {{ formattedDate(invoice.invoice_date) }}
                                 </span>
 
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Due date : </span>
                                     {{ formattedDate(invoice.due_date) }}
                                 </span>
 
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Note : </span>
                                     <span v-if="invoice.note">{{ invoice.note }}</span>
                                     <span v-else><i class="text-gray-400">Not added yet</i></span>
                                 </span>
 
-                                <span class="text-black dark:text-white py-1">
+                                <span class="text-base py-1">
                                     <span class="font-semibold">Created by : </span>
                                     {{ invoice.created_by.name }}
                                 </span>
                             </div>
                         </div>
                         <!-- Invoiced products -->
-                        <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3 mt-4 text-primary">
+                        <span class="font-semibold text-lg border-l-2 border-primary p-1 pl-3 mt-4">
                             Invoiced products
                         </span>
                         <div class="flex md:justify-between justify-end py-4">
-                            <span class="text-black dark:text-white" v-if="invoice.products.length == 0">
+                            <span v-if="invoice.products.length == 0">
                                 Please add your first product
                             </span>
-                            <Button class="shadow-xl" variant="primary" raised onclick="productModal.showModal()">
+                            <button class="btn btn-sm btn-primary text-white rounded shadow-xl"
+                                onclick="productModal.showModal()">
                                 <span>Add product</span>
-                            </Button>
+                            </button>
 
                             <AddProductsModal :invoice="invoice" />
                         </div>

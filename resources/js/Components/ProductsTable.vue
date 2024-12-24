@@ -46,7 +46,7 @@ const deleteProduct = (invoice, product) => {
                         <td>{{ product.unit }}</td>
                         <td>{{ product.total_charge }}</td>
                         <td>
-                            <Button @click="
+                            <button @click="
                                 router.delete(
                                     route(
                                         'invoice.product.delete',
@@ -55,12 +55,13 @@ const deleteProduct = (invoice, product) => {
                                             product: product.id,
                                         },
                                         {
-                                            onSuccess: () =>
-                                                toast.success(page.props.flash.message),
+                                            onSuccess: () => toast.success(page.props.flash.message),
+
                                             preserveScroll: true,
                                         }
                                     )
-                                )" variant="danger" class="ml-2" raised>
+                                )
+                                " class="btn btn-sm btn-error rounded shadow-xl text-white ml-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-5">
                                     <path fill-rule="evenodd"
@@ -84,9 +85,7 @@ const deleteProduct = (invoice, product) => {
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th class="font-semibold text-black">
-                            {{ invoice.vat_percentage }}%
-                        </th>
+                        <th class="font-semibold text-black">{{ invoice.vat_percentage }}%</th>
                     </tr>
                     <tr class="bg-base-300">
                         <td class="font-semibold text-black">Grand total</td>
